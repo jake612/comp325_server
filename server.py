@@ -17,17 +17,51 @@ def email():
             dict_values['insurance'] = request.form.get('insurance')
             dict_values['max_cost'] = request.form.get('max_cost')
             dict_values['qualifications'] = request.form.get('qualifications')
+            dict_values['specialities'] = request.form.getlist('specialities')
+            dict_values['approach'] = request.form.getlist('approach')
+            dict_values['p_dist'] = request.form.get('p_dist')
+            dict_values['p_qual'] = request.form.get('p_qual')
+            dict_values['p_ins'] = request.form.get('p_ins')
+            dict_values['p_cst'] = request.form.get('p_cst')
+            dict_values['p_type'] = request.form.get('p_type')
+            dict_values['p_spec'] = request.form.get('p_spec')
+            print(dict_values)
             contents, map_name = get_rank_info_and_map(dict_values)
             send_email(email, 'Your results have arrived!', contents, map_name)
             os.remove(map_name)
-            return '<p>Message Sent!</p>'
+            return '''<!DOCTYPE html> <html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<title>Sent!</title>
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div style="width: 50%; margin: auto;">
+			<h2>
+				Form Submitted!
+			</h2>
+			<p>
+				Check your email for your results. To view your customized, interactive map, download the attached map.html file and open it.
+			</p>
+			<form action="https://therapisthelp.wordpress.com">
+				<input class="btn btn-outline-info btn-lg btn-block" type="submit" value="Return to Therapist Help" />
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>'''
         except Exception as e:
             print(e)
             return '<p>There was an error processing your request</p>'
 
 
     return '''
-    '<form class="" method="POST">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body class="nimbus-is-editor">'<form class="" method="POST">
   <ul>
     <li><label for="namel">Name:  </label>
     <input type="text" name="name" value=""></li>
@@ -38,6 +72,7 @@ def email():
   <p><b>
     Qualifications
   </b></p>
+
   <select class="" name="qualifications">
     <option value="therapist">Therapist</option>
     <option value="counseler">Counseler</option>
@@ -49,7 +84,7 @@ def email():
     </b>
     </p>
   <li><select class="" name="insurance">
-    <option value="  Aetna">Aetna</option>
+    <option value="Aetna">Aetna</option>
 <option value="Aetna EAP">Aetna EAP</option>
 <option value="Alliance">Alliance</option>
 <option value="American Behavioral">American Behavioral</option>
@@ -68,7 +103,7 @@ def email():
 <option value="Blue Value">Blue Value</option>
 <option value="Blue Value/Blue Value w/UNC HA">Blue Value/Blue Value w/UNC HA</option>
 <option value="BlueCross and BlueShield">BlueCross and BlueShield</option>
-<option value="Cameron & Associates">Cameron & Associates</option>
+<option value="Cameron &amp; Associates">Cameron &amp; Associates</option>
 <option value="CareFirst">CareFirst</option>
 <option value="Ceridian">Ceridian</option>
 <option value="Cigna">Cigna</option>
@@ -111,8 +146,9 @@ def email():
 <option value="UnitedHealthcare">UnitedHealthcare</option>
 <option value="Workplace Options EAP">Workplace Options EAP</option>
   </select></li>
-  <p>
-  </p>
+  <p><b>
+    Cost
+  </b></p>
   <ul>
     <li><label for="minl">Min cost:  </label>
     <input type="text" name="min_cost" value=""></li>
@@ -122,161 +158,215 @@ def email():
   <p><b>
     Speciality
   </b>
-  <li>
+  </p><li>
     <div class="grid-container">
-      <div class="grid-item">
-        <ul>
-
-    <li><input type="checkbox" name="Addiction" value="">Addiction</li>
-    <li><input type="checkbox" name="ADHD" value="">ADHD</li>
-    <li><input type="checkbox" name="Anger Management" value="">Anger Management</li>
-    <li><input type="checkbox" name="Anxiety" value="">Anxiety</li>
-    <li><input type="checkbox" name="Autism" value="">Autism</li>
-    <li><input type="checkbox" name="Behavioral Issues" value="">Behavioral Issues</li>
-    <li><input type="checkbox" name="Bipolar Disorder" value="">Bipolar Disorder</li>
-    <li><input type="checkbox" name="Career Counseling" value="">Career Counseling</li>
-    <li><input type="checkbox" name="Child or Adolescent" value="">Child or Adolescent</li>
-    <li><input type="checkbox" name="Chronic Illness" value="">Chronic Illness</li>
-    <li><input type="checkbox" name="Chronic Pain" value="">Chronic Pain</li>
-    <li><input type="checkbox" name="Codependency" value="">Codependency</li>
-    <li><input type="checkbox" name="Coping Skills" value="">Coping Skills</li>
-    <li><input type="checkbox" name="Depression" value="">Depression</li>
-    <li><input type="checkbox" name="Developmental Disorders" value="">Developmental Disorders</li>
-    <li><input type="checkbox" name="Divorce" value="">Divorce</li>
-    <li><input type="checkbox" name="Dual Diagnosis" value="">Dual Diagnosis</li>
-    <li><input type="checkbox" name="Eating Disorders" value="">Eating Disorders</li>
-    <li><input type="checkbox" name="Emotional Disturbance" value="">Emotional Disturbance</li>
-    <li><input type="checkbox" name="Family Conflict" value="">Family Conflict</li>
-    <li><input type="checkbox" name="Gay" value="">Gay</li>
-    <li><input type="checkbox" name="Grief" value="">Grief</li>
-    <li><input type="checkbox" name="Infertility" value="">Infertility</li>
-    <li><input type="checkbox" name="Life Coaching" value="">Life Coaching</li>
-    <li><input type="checkbox" name="life satisfaction" value="">life satisfaction</li>
-    <li><input type="checkbox" name="Life Transitions" value="">Life Transitions</li>
-    <li><input type="checkbox" name="Marital and Premarital" value="">Marital and Premarital</li>
-    <li><input type="checkbox" name="Mood Disorders" value="">Mood Disorders</li>
-    <li><input type="checkbox" name="Parenting" value="">Parenting</li>
+    <div class="grid-item">
+      <ul>
+ <li><input type="checkbox" name="specialities" value="Addiction">Addiction</li>
+    <li><input type="checkbox" name="specialities" value="ADHD">ADHD</li>
+    <li><input type="checkbox" name="specialities" value="Anger Management">Anger Management</li>
+    <li><input type="checkbox" name="specialities" value="Anxiety">Anxiety</li>
+    <li><input type="checkbox" name="specialities" value="Autism">Autism</li>
+    <li><input type="checkbox" name="specialities" value="Behavioral Issues">Behavioral Issues</li>
+    <li><input type="checkbox" name="specialities" value="Bipolar Disorder">Bipolar Disorder</li>
+    <li><input type="checkbox" name="specialities" value="Career Counseling">Career Counseling</li>
+    <li><input type="checkbox" name="specialities" value="Child or Adolescent">Child or Adolescent</li>
+    <li><input type="checkbox" name="specialities" value="Chronic Illness">Chronic Illness</li>
+    <li><input type="checkbox" name="specialities" value="Chronic Pain">Chronic Pain</li>
+    <li><input type="checkbox" name="specialities" value="Codependency">Codependency</li>
+    <li><input type="checkbox" name="specialities" value="Coping Skills">Coping Skills</li>
+    <li><input type="checkbox" name="specialities" value="Depression">Depression</li>
+    <li><input type="checkbox" name="specialities" value="Developmental Disorders">Developmental Disorders</li>
+    <li><input type="checkbox" name="specialities" value="Divorce">Divorce</li>
+    <li><input type="checkbox" name="specialities" value="Dual Diagnosis">Dual Diagnosis</li>
+    <li><input type="checkbox" name="specialities" value="Eating Disorders">Eating Disorders</li>
+    <li><input type="checkbox" name="specialities" value="Emotional Disturbance">Emotional Disturbance</li>
+    <li><input type="checkbox" name="specialities" value="Family Conflict">Family Conflict</li>
+    <li><input type="checkbox" name="specialities" value="Gay">Gay</li>
+    <li><input type="checkbox" name="specialities" value="Grief">Grief</li>
+    <li><input type="checkbox" name="specialities" value="Infertility">Infertility</li>
+    <li><input type="checkbox" name="specialities" value="Life Coaching">Life Coaching</li>
+    <li><input type="checkbox" name="specialities" value="life satisfaction">life satisfaction</li>
+    <li><input type="checkbox" name="specialities" value="Life Transitions">Life Transitions</li>
+    <li><input type="checkbox" name="specialities" value="Marital and Premarital">Marital and Premarital</li>
+    <li><input type="checkbox" name="specialities" value="Mood Disorders">Mood Disorders</li>
+    <li><input type="checkbox" name="specialities" value="Parenting">Parenting</li>
   </ul>
   </div>
     <div class="grid-item">
       <ul>
 
-    <li><input type="checkbox" name="Peer Relationships" value="">Peer Relationships</li>
-    <li><input type="checkbox" name="Personality Disorders" value="">Personality Disorders</li>
-    <li><input type="checkbox" name="Postpartum" value="">Postpartum</li>
-    <li><input type="checkbox" name="Prenatal" value="">Prenatal</li>
-    <li><input type="checkbox" name="Psychosis" value="">Psychosis</li>
-    <li><input type="checkbox" name="purpose" value="">purpose</li>
-    <li><input type="checkbox" name="Racial Identity" value="">Racial Identity</li>
-    <li><input type="checkbox" name="Relationship Issues" value="">Relationship Issues</li>
-    <li><input type="checkbox" name="School Issues" value="">School Issues</li>
-    <li><input type="checkbox" name="Self Esteem" value="">Self Esteem</li>
-    <li><input type="checkbox" name="Sex Therapy" value="">Sex Therapy</li>
-    <li><input type="checkbox" name="Sexual Abuse" value="">Sexual Abuse</li>
-    <li><input type="checkbox" name="Sexual Addiction" value="">Sexual Addiction</li>
-    <li><input type="checkbox" name="Sleep or Insomnia" value="">Sleep or Insomnia</li>
-    <li><input type="checkbox" name="Spirituality" value="">Spirituality</li>
-    <li><input type="checkbox" name="Sports Performance" value="">Sports Performance</li>
-    <li><input type="checkbox" name="Stress" value="">Stress</li>
-    <li><input type="checkbox" name="Substance Use" value="">Substance Use</li>
-    <li><input type="checkbox" name="Suicidal Ideation" value="">Suicidal Ideation</li>
-    <li><input type="checkbox" name="Testing and Evaluation" value="">Testing and Evaluation</li>
-    <li><input type="checkbox" name="Transgender" value="">Transgender</li>
-    <li><input type="checkbox" name="Trauma and PTSD" value="">Trauma and PTSD</li>
-    <li><input type="checkbox" name="Weight Loss" value="">Weight Loss</li>
-    <li><input type="checkbox" name="adult childrens relsps with paren" value="">adult childrens relsps with paren</li>
-    <li><input type="checkbox" name="Aspergers Syndrome" value="">Aspergers Syndrome</li>
-    <li><input type="checkbox" name="Mens Issues" value="">Mens Issues</li>
-    <li><input type="checkbox" name="Womens Issues" value="">Womens Issues</li>
+    <li><input type="checkbox" name="specialities" value="Peer Relationships">Peer Relationships</li>
+    <li><input type="checkbox" name="specialities" value="Personality Disorders">Personality Disorders</li>
+    <li><input type="checkbox" name="specialities" value="Postpartum">Postpartum</li>
+    <li><input type="checkbox" name="specialities" value="Prenatal">Prenatal</li>
+    <li><input type="checkbox" name="specialities" value="Psychosis">Psychosis</li>
+    <li><input type="checkbox" name="specialities" value="purpose">purpose</li>
+    <li><input type="checkbox" name="specialities" value="Racial Identity">Racial Identity</li>
+    <li><input type="checkbox" name="specialities" value="Relationship Issues">Relationship Issues</li>
+    <li><input type="checkbox" name="specialities" value="School Issues">School Issues</li>
+    <li><input type="checkbox" name="specialities" value="Self Esteem">Self Esteem</li>
+    <li><input type="checkbox" name="specialities" value="Sex Therapy">Sex Therapy</li>
+    <li><input type="checkbox" name="specialities" value="Sexual Abuse">Sexual Abuse</li>
+    <li><input type="checkbox" name="specialities" value="Sexual Addiction">Sexual Addiction</li>
+    <li><input type="checkbox" name="specialities" value="Sleep or Insomnia">Sleep or Insomnia</li>
+    <li><input type="checkbox" name="specialities" value="Spirituality">Spirituality</li>
+    <li><input type="checkbox" name="specialities" value="Sports Performance">Sports Performance</li>
+    <li><input type="checkbox" name="specialities" value="Stress">Stress</li>
+    <li><input type="checkbox" name="specialities" value="Substance Use">Substance Use</li>
+    <li><input type="checkbox" name="specialities" value="Suicidal Ideation">Suicidal Ideation</li>
+    <li><input type="checkbox" name="specialities" value="Testing and Evaluation">Testing and Evaluation</li>
+    <li><input type="checkbox" name="specialities" value="Transgende">Transgender</li>
+    <li><input type="checkbox" name="specialities" value="Trauma and PTSD">Trauma and PTSD</li>
+    <li><input type="checkbox" name="specialities" value="Weight Loss">Weight Loss</li>
+    <li><input type="checkbox" name="specialities" value="adult childrens relsps with paren">adult childrens relsps with paren</li>
+    <li><input type="checkbox" name="specialities" value="Aspergers Syndrome">Aspergers Syndrome</li>
+    <li><input type="checkbox" name="specialities" value="Mens Issues">Mens Issues</li>
+    <li><input type="checkbox" name="specialities" value="Womens Issues">Womens Issues</li>
   </ul>
   </div>
     </div>
   </li>
   <p><b>
-    Therpay type
+    Therapy type
   </b>
   </p>
   <ul>
-    <div class="grid-container">
-      <div class="grid-item">
-        <li><input type="checkbox" name="  Art Therapy" value="">  Art Therapy</li>
-<li><input type="checkbox" name="  Attachment-based" value="">  Attachment-based</li>
-<li><input type="checkbox" name="  Biofeedback" value="">  Biofeedback</li>
-<li><input type="checkbox" name="  Clinical Supervision and Licensed Supervisors -" value="">  Clinical Supervision and Licensed Supervisors -</li>
-<li><input type="checkbox" name="  Coaching" value="">  Coaching</li>
-<li><input type="checkbox" name="  Cognitive Behavioral (CBT)" value="">  Cognitive Behavioral (CBT)</li>
-<li><input type="checkbox" name="  Culturally Sensitive" value="">  Culturally Sensitive</li>
-<li><input type="checkbox" name="  Dialectical (DBT)" value="">  Dialectical (DBT)</li>
-<li><input type="checkbox" name="  Eclectic" value="">  Eclectic</li>
-<li><input type="checkbox" name="  EMDR" value="">  EMDR</li>
-<li><input type="checkbox" name="  Emotionally Focused" value="">  Emotionally Focused</li>
-<li><input type="checkbox" name="  Existential" value="">  Existential</li>
-<li><input type="checkbox" name="  Experiential Therapy" value="">  Experiential Therapy</li>
-<li><input type="checkbox" name="  Expressive Arts" value="">  Expressive Arts</li>
-<li><input type="checkbox" name="  Family / Marital" value="">  Family / Marital</li>
-<li><input type="checkbox" name="  Family Systems" value="">  Family Systems</li>
-<li><input type="checkbox" name="  Feminist" value="">  Feminist</li>
-<li><input type="checkbox" name="  Forensic Psychology" value="">  Forensic Psychology</li>
-<li><input type="checkbox" name="  Gestalt" value="">  Gestalt</li>
-<li><input type="checkbox" name="  Gottman Method" value="">  Gottman Method</li>
-<li><input type="checkbox" name="  Humanistic" value="">  Humanistic</li>
-<li><input type="checkbox" name="  Hypnotherapy" value="">  Hypnotherapy</li>
-<li><input type="checkbox" name="  Imago" value="">  Imago</li>
-<li><input type="checkbox" name="  Integrative" value="">  Integrative</li>
-<li><input type="checkbox" name="  Internal Family Systems (IFS)" value="">  Internal Family Systems (IFS)</li>
-<li><input type="checkbox" name="  Interpersonal" value="">  Interpersonal</li>
-<li><input type="checkbox" name="  Intervention" value="">  Intervention</li>
-<li><input type="checkbox" name="  Jungian" value="">  Jungian</li>
-<li><input type="checkbox" name="  Mindfulness-Based (MBCT)" value="">  Mindfulness-Based (MBCT)</li>
-<li><input type="checkbox" name="  Motivational Interviewing" value="">  Motivational Interviewing</li>
-<li><input type="checkbox" name="  Multicultural" value="">  Multicultural</li>
-<li><input type="checkbox" name="  Narrative" value="">  Narrative</li>
 
-<li><input type="checkbox" name="  Neurofeedback" value="">  Neurofeedback</li>
-<li><input type="checkbox" name="  Parent-Child Interaction (PCIT)" value="">  Parent-Child Interaction (PCIT)</li>
+
+
+  <div class="grid-container">
+      <div class="grid-item">
+        <li><input type="checkbox" name="approach" value="Art Therapy">Art Therapy</li>
+<li><input type="checkbox" name="approach" value="Attachment-based">Attachment-based</li>
+<li><input type="checkbox" name="approach" value="Biofeedback">Biofeedback</li>
+<li><input type="checkbox" name="approach" value="Clinical Supervision and Licensed Supervisors -">Clinical Supervision and Licensed Supervisors -</li>
+<li><input type="checkbox" name="approach" value="Coaching">Coaching</li>
+<li><input type="checkbox" name="approach" value="Cognitive Behavioral (CBT)">Cognitive Behavioral (CBT)</li>
+<li><input type="checkbox" name="approach" value="Culturally Sensitive">Culturally Sensitive</li>
+<li><input type="checkbox" name="approach" value="Dialectical (DBT)">Dialectical (DBT)</li>
+<li><input type="checkbox" name="approach" value="Eclectic">Eclectic</li>
+<li><input type="checkbox" name="approach" value="EMDR">EMDR</li>
+<li><input type="checkbox" name="approach" value="Emotionally Focused">Emotionally Focused</li>
+<li><input type="checkbox" name="approach" value="Existential">Existential</li>
+<li><input type="checkbox" name="approach" value="Experiential Therapy">Experiential Therapy</li>
+<li><input type="checkbox" name="approach" value="Expressive Arts">Expressive Arts</li>
+<li><input type="checkbox" name="approach" value="Family / Marital">Family / Marital</li>
+<li><input type="checkbox" name="approach" value="Family Systems">Family Systems</li>
+<li><input type="checkbox" name="approach" value="Feminist">Feminist</li>
+<li><input type="checkbox" name="approach" value="Forensic Psychology">Forensic Psychology</li>
+<li><input type="checkbox" name="approach" value="Gestalt">Gestalt</li>
+<li><input type="checkbox" name="approach" value="Gottman Method">Gottman Method</li>
+<li><input type="checkbox" name="approach" value="Humanistic">Humanistic</li>
+<li><input type="checkbox" name="approach" value="Hypnotherapy">Hypnotherapy</li>
+<li><input type="checkbox" name="approach" value="Imago">Imago</li>
+<li><input type="checkbox" name="approach" value="Integrative">Integrative</li>
+<li><input type="checkbox" name="approach" value="Internal Family Systems (IFS)">Internal Family Systems (IFS)</li>
+<li><input type="checkbox" name="approach" value="Interpersonal">Interpersonal</li>
+<li><input type="checkbox" name="approach" value="Intervention">Intervention</li>
+<li><input type="checkbox" name="approach" value="Jungian">Jungian</li>
+<li><input type="checkbox" name="approach" value="Mindfulness-Based (MBCT)">Mindfulness-Based (MBCT)</li>
+<li><input type="checkbox" name="approach" value="Motivational Interviewing">Motivational Interviewing</li>
+<li><input type="checkbox" name="approach" value="Multicultural">Multicultural</li>
+<li><input type="checkbox" name="approach" value="Narrative">Narrative</li>
+
+<li><input type="checkbox" name="approach" value="Neurofeedback">Neurofeedback</li>
+<li><input type="checkbox" name="approach" value="Parent-Child Interaction (PCIT)">Parent-Child Interaction (PCIT)</li>
 </div>
 <div class="grid-item">
-<li><input type="checkbox" name="  Person-Centered" value="">  Person-Centered</li>
-<li><input type="checkbox" name="  Play Therapy" value="">  Play Therapy</li>
-<li><input type="checkbox" name="  Positive Psychology" value="">  Positive Psychology</li>
-<li><input type="checkbox" name="  Prolonged Exposure Therapy" value="">  Prolonged Exposure Therapy</li>
-<li><input type="checkbox" name="  Psychoanalytic" value="">  Psychoanalytic</li>
-<li><input type="checkbox" name="  Psychodynamic" value="">  Psychodynamic</li>
-<li><input type="checkbox" name="  Psychological Testing and Evaluation" value="">  Psychological Testing and Evaluation</li>
-<li><input type="checkbox" name="  Reality Therapy" value="">  Reality Therapy</li>
-<li><input type="checkbox" name="  Relational" value="">  Relational</li>
-<li><input type="checkbox" name="  Sandplay" value="">  Sandplay</li>
-<li><input type="checkbox" name="  Solution Focused Brief (SFBT)" value="">  Solution Focused Brief (SFBT)</li>
-<li><input type="checkbox" name="  Somatic" value="">  Somatic</li>
-<li><input type="checkbox" name="  Strength-Based" value="">  Strength-Based</li>
-<li><input type="checkbox" name="  Transpersonal" value="">  Transpersonal</li>
-<li><input type="checkbox" name="  Trauma Focused" value="">  Trauma Focused</li>
-<li><input type="checkbox" name=" Adlerian" value=""> Adlerian</li>
-<li><input type="checkbox" name=" Art Therapy" value=""> Art Therapy</li>
-<li><input type="checkbox" name=" Attachment-based" value=""> Attachment-based</li>
-<li><input type="checkbox" name=" Biofeedback" value=""> Biofeedback</li>
-<li><input type="checkbox" name=" Clinical Supervision and Licensed Supervisors -" value=""> Clinical Supervision and Licensed Supervisors -</li>
-<li><input type="checkbox" name=" Coaching" value=""> Coaching</li>
-<li><input type="checkbox" name=" Cognitive Behavioral (CBT)" value=""> Cognitive Behavioral (CBT)</li>
-<li><input type="checkbox" name=" Culturally Sensitive" value=""> Culturally Sensitive</li>
-<li><input type="checkbox" name=" Dialectical (DBT)" value=""> Dialectical (DBT)</li>
-<li><input type="checkbox" name=" Eclectic" value=""> Eclectic</li>
-<li><input type="checkbox" name=" EMDR" value=""> EMDR</li>
-<li><input type="checkbox" name=" Existential" value=""> Existential</li>
-<li><input type="checkbox" name=" Family / Marital" value=""> Family / Marital</li>
-<li><input type="checkbox" name=" Humanistic" value=""> Humanistic</li>
-<li><input type="checkbox" name=" Hypnotherapy" value=""> Hypnotherapy</li>
-<li><input type="checkbox" name=" Neurofeedback" value=""> Neurofeedback</li>
-<li><input type="checkbox" name=" Psychoanalytic" value=""> Psychoanalytic</li>
-<li><input type="checkbox" name=" treatment-approach" value=""> treatment-approach</li>
-<li><input type="checkbox" name="Acceptance and Commitment (ACT)" value="">Acceptance and Commitment (ACT)</li>
+<li><input type="checkbox" name="approach" value="Person-Centered">Person-Centered</li>
+<li><input type="checkbox" name="approach" value="Play Therapy">Play Therapy</li>
+<li><input type="checkbox" name="approach" value="Positive Psychology">Positive Psychology</li>
+<li><input type="checkbox" name="approach" value="Prolonged Exposure Therapy">Prolonged Exposure Therapy</li>
+<li><input type="checkbox" name="approach" value="Psychoanalytic">Psychoanalytic</li>
+<li><input type="checkbox" name="approach" value="Psychodynamic">Psychodynamic</li>
+<li><input type="checkbox" name="approach" value="Psychological Testing and Evaluation">Psychological Testing and Evaluation</li>
+<li><input type="checkbox" name="approach" value="Reality Therapy">Reality Therapy</li>
+<li><input type="checkbox" name="approach" value="Relational">Relational</li>
+<li><input type="checkbox" name="approach" value="Sandplay">Sandplay</li>
+<li><input type="checkbox" name="approach" value="Solution Focused Brief (SFBT)">Solution Focused Brief (SFBT)</li>
+<li><input type="checkbox" name="approach" value="Somatic">Somatic</li>
+<li><input type="checkbox" name="approach" value="Strength-Based">Strength-Based</li>
+<li><input type="checkbox" name="approach" value="Transpersonal">Transpersonal</li>
+<li><input type="checkbox" name="approach" value="Trauma Focused">Trauma Focused</li>
 </div>
 
 
     </div>
   </ul>
+  </ul>
+  <p><b>
+    Priorities: How important is each category on a scale from 1 (not important) to 7 (very important)?
+  </p></b>
+  <ul>
+    <li><label for="p_dist">Distance:  </label>
+        <select class="" name="p_dist"?>
+          <option value="1" name="1">1</option>
+          <option value="2" name="2">2</option>
+          <option value="3" name="3">3</option>
+          <option value="4" name="4">4</option>
+          <option value="5" name="5">5</option>
+          <option value="6" name="6">6</option>
+          <option value="7" name="7">7</option>
+        </select>
+    </li>
+    <li><label for="p_qual">Qualifications:  </label>
+        <select class="" name="p_qual"?>
+          <option value="1" name="1">1</option>
+          <option value="2" name="2">2</option>
+          <option value="3" name="3">3</option>
+          <option value="4" name="4">4</option>
+          <option value="5" name="5">5</option>
+          <option value="6" name="6">6</option>
+          <option value="7" name="7">7</option>
+        </select>
+    </li>
+    <li><label for="p_ins">Insurance:  </label>
+        <select class="" name="p_ins"?>
+          <option value="1" name="1">1</option>
+          <option value="2" name="2">2</option>
+          <option value="3" name="3">3</option>
+          <option value="4" name="4">4</option>
+          <option value="5" name="5">5</option>
+          <option value="6" name="6">6</option>
+          <option value="7" name="7">7</option>
+        </select>
+    </li>
+    <li><label for="p_cst">Cost:  </label>
+        <select class="" name="p_cst"?>
+          <option value="1" name="1">1</option>
+          <option value="2" name="2">2</option>
+          <option value="3" name="3">3</option>
+          <option value="4" name="4">4</option>
+          <option value="5" name="5">5</option>
+          <option value="6" name="6">6</option>
+          <option value="7" name="7">7</option>
+        </select>
+    </li>
+    <li><label for="p_spec">Speciality:  </label>
+        <select class="" name="p_spec"?>
+          <option value="1" name="1">1</option>
+          <option value="2" name="2">2</option>
+          <option value="3" name="3">3</option>
+          <option value="4" name="4">4</option>
+          <option value="5" name="5">5</option>
+          <option value="6" name="6">6</option>
+          <option value="7" name="7">7</option>
+        </select>
+    </li>
+    <li><label for="p_type">Therapy Type:  </label>
+        <select class="" name="p_type"?>
+          <option value="1" name="1">1</option>
+          <option value="2" name="2">2</option>
+          <option value="3" name="3">3</option>
+          <option value="4" name="4">4</option>
+          <option value="5" name="5">5</option>
+          <option value="6" name="6">6</option>
+          <option value="7" name="7">7</option>
+        </select>
+    </li>
+  </ul>
 
-</ul>
 
   <input type="submit" value="Submit">
 
@@ -331,11 +421,10 @@ def email():
   .grid-item{
     grid-column-gap: 50px;
   }
-
-</style>'''
-
+'''
 if __name__ == '__main__':
     print("starting")
     app.run(debug=True,
             host="0.0.0.0",
-            port=8888)
+            port=8888,
+            ssl_context='adhoc')
