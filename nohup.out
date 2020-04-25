@@ -1,0 +1,108 @@
+starting
+ * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-168-154
+starting
+starting
+ * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-168-154
+starting
+ * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on https://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-168-154
+172.73.151.84 - - [18/Apr/2020 12:31:12] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [18/Apr/2020 17:10:06] "[37mGET / HTTP/1.1[0m" 200 -
+ * Detected change in '/home/ec2-user/server/server.py', reloading
+starting
+ * Restarting with stat
+  File "/home/ec2-user/server/server.py", line 23
+    return '<!DOCTYPE html>
+                          ^
+SyntaxError: EOL while scanning string literal
+  File "server.py", line 23
+    return '<!DOCTYPE html>
+                          ^
+SyntaxError: EOL while scanning string literal
+  File "server.py", line 23
+    return '<!DOCTYPE html>
+                          ^
+SyntaxError: EOL while scanning string literal
+starting
+ * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on https://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-168-154
+172.73.151.84 - - [18/Apr/2020 17:15:45] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [18/Apr/2020 17:16:22] "[37mPOST / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [18/Apr/2020 17:17:52] "[37mGET / HTTP/1.1[0m" 200 -
+103.145.12.29 - - [20/Apr/2020 00:47:10] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [21/Apr/2020 00:35:53] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [21/Apr/2020 00:35:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+starting
+ * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on https://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-168-154
+172.73.151.84 - - [21/Apr/2020 02:00:23] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [21/Apr/2020 02:00:35] "[37mGET / HTTP/1.1[0m" 200 -
+77.88.5.16 - - [21/Apr/2020 06:50:20] "[33mGET /robots.txt HTTP/1.1[0m" 404 -
+77.88.5.16 - - [21/Apr/2020 06:50:24] "[37mGET / HTTP/1.1[0m" 200 -
+139.99.131.140 - - [21/Apr/2020 08:48:29] "[33mGET /recordings/ HTTP/1.1[0m" 404 -
+139.99.131.140 - - [21/Apr/2020 08:48:29] "[33mGET /a2billing/admin/Public/PP_error.php?c=accessdenied HTTP/1.1[0m" 404 -
+172.73.151.84 - - [21/Apr/2020 15:43:08] "[37mGET / HTTP/1.1[0m" 200 -
+24.211.141.223 - - [21/Apr/2020 15:43:14] "[37mGET / HTTP/1.1[0m" 200 -
+24.211.141.223 - - [21/Apr/2020 15:43:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+71.166.46.46 - - [21/Apr/2020 15:43:34] "[37mGET / HTTP/1.1[0m" 200 -
+71.166.46.46 - - [21/Apr/2020 15:43:34] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+71.166.46.46 - - [21/Apr/2020 15:44:06] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [22/Apr/2020 14:45:54] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [22/Apr/2020 14:45:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+89.248.174.3 - - [23/Apr/2020 04:25:19] "[37mGET / HTTP/1.1[0m" 200 -
+71.166.46.46 - - [24/Apr/2020 14:11:04] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [24/Apr/2020 14:18:00] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [24/Apr/2020 14:18:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+172.73.151.84 - - [24/Apr/2020 14:18:05] "[37mGET / HTTP/1.1[0m" 200 -
+71.166.46.46 - - [24/Apr/2020 14:25:42] "[37mGET / HTTP/1.1[0m" 200 -
+starting
+ * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on https://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-168-154
+172.73.151.84 - - [24/Apr/2020 18:39:04] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [24/Apr/2020 18:39:39] "[37mPOST / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [25/Apr/2020 15:33:54] "[37mGET / HTTP/1.1[0m" 200 -
+172.73.151.84 - - [25/Apr/2020 15:33:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
